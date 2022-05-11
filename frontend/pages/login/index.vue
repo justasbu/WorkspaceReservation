@@ -100,7 +100,8 @@ export default {
 
     loginEmailRules: [
       v => !!v || "Required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      v => /.+@uc.group$/.test(v) || "E-mail must use @uc.group domain"
     ],
     show1: false,
     rules: {

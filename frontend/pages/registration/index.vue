@@ -89,7 +89,7 @@ export default {
     emailRules: [
       v => !!v || "Required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      v => /.+@uc\.+group$/.test(v) || "E-mail must be under uc.group domain",
+      v => /.+@uc.group$/.test(v) || "E-mail must use @uc.group domain"
     ],
 
     show1: false,
