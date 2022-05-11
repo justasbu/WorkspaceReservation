@@ -4,7 +4,7 @@
       <div>
         <v-tabs v-model="tab" show-arrows background-color="deep-purple accent-4" icons-and-text dark grow>
           <v-tabs-slider color="purple darken-4"></v-tabs-slider>
-          <v-tab v-for="i in tabs">
+          <v-tab v-for="i in tabs" v-bind:key="i.name">
             <v-icon large>{{ i.icon }}</v-icon>
             <div class="caption py-1">{{ i.name }}</div>
           </v-tab>
