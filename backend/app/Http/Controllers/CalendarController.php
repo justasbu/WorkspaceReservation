@@ -210,6 +210,7 @@ class CalendarController extends Controller
                         'DateTime' => $reservationData->dateTo,
                         'TimeZone' => 'UTC',
                     ],
+                    'showAs' => 'Free'
                 ];
 
                 $url = "/users/" . $userID . "/events";
