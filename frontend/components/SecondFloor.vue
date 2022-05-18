@@ -92,9 +92,9 @@
     </a><a xlink:href="#" xlink:title="Workspace #12" @click="openDialog(12)">
       <rect x="1342" y="360" v-bind:fill="getColor(12)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #13" @click="openDialog(13)">
-      <rect x="1342" y="424" v-bind:fill="getColor(13)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="1342" y="425" v-bind:fill="getColor(13)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #14" @click="openDialog(14)">
-      <rect x="1342" y="485" v-bind:fill="getColor(14)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="1342" y="486" v-bind:fill="getColor(14)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #15" @click="openDialog(15)">
       <rect x="1292" y="360" v-bind:fill="getColor(15)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #16" @click="openDialog(16)">
@@ -112,7 +112,7 @@
     </a><a xlink:href="#" xlink:title="Workspace #22" @click="openDialog(22)">
       <rect x="1184" y="464" v-bind:fill="getColor(22)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #23" @click="openDialog(23)">
-      <rect x="1095" y="455" v-bind:fill="getColor(23)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="1095" y="456" v-bind:fill="getColor(23)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #24" @click="openDialog(24)">
       <rect x="1095" y="513" v-bind:fill="getColor(24)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #25" @click="openDialog(25)">
@@ -138,7 +138,7 @@
     </a><a xlink:href="#" xlink:title="Workspace #34" @click="openDialog(34)">
       <rect x="944" y="364" v-bind:fill="getColor(34)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #35" @click="openDialog(35)">
-      <rect x="836" y="364" v-bind:fill="getColor(35)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="836" y="365" v-bind:fill="getColor(35)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #36" @click="openDialog(36)">
       <rect x="787" y="365" v-bind:fill="getColor(36)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #37" @click="openDialog(37)">
@@ -166,11 +166,11 @@
     </a><a xlink:href="#" xlink:title="Workspace #48" @click="openDialog(48)">
       <rect x="420" y="330" v-bind:fill="getColor(48)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #49" @click="openDialog(49)">
-      <rect x="420" y="389" v-bind:fill="getColor(49)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="420" y="388" v-bind:fill="getColor(49)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #50" @click="openDialog(50)">
       <rect x="419" y="451" v-bind:fill="getColor(50)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #51" @click="openDialog(51)">
-      <rect x="419" y="504" v-bind:fill="getColor(51)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="419" y="506" v-bind:fill="getColor(51)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #52" @click="openDialog(52)">
       <rect x="368" y="330" v-bind:fill="getColor(52)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #53" @click="openDialog(53)">
@@ -182,17 +182,17 @@
     </a><a xlink:href="#" xlink:title="Workspace #56" @click="openDialog(56)">
       <rect x="292" y="328" v-bind:fill="getColor(56)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #57" @click="openDialog(57)">
-      <rect x="292" y="386" v-bind:fill="getColor(57)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="292" y="387" v-bind:fill="getColor(57)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #58" @click="openDialog(58)">
-      <rect x="292" y="444" v-bind:fill="getColor(58)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="292" y="446" v-bind:fill="getColor(58)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #59" @click="openDialog(59)">
       <rect x="293" y="509" v-bind:fill="getColor(59)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #60" @click="openDialog(60)">
       <rect x="242" y="328" v-bind:fill="getColor(60)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #61" @click="openDialog(61)">
-      <rect x="242" y="385" v-bind:fill="getColor(61)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="242" y="387" v-bind:fill="getColor(61)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #62" @click="openDialog(62)">
-      <rect x="242" y="443" v-bind:fill="getColor(62)" opacity="0.3" width="50" height="50"></rect>
+      <rect x="242" y="446" v-bind:fill="getColor(62)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #63" @click="openDialog(63)">
       <rect x="242" y="509" v-bind:fill="getColor(63)" opacity="0.3" width="50" height="50"></rect>
     </a><a xlink:href="#" xlink:title="Workspace #64" @click="openDialog(64)">
@@ -357,6 +357,9 @@ export default {
         v => !!v || "Required",
         v => this.dateFrom < v || "Date To must be greater than Date From",
         v => v > this.minimumTime || "Date must be greater than Current time",
+        v => moment(new Date(this.dateTo)).diff(moment(new Date(this.dateFrom)), 'months', true) < 1 ||
+          "Reservation can not be longer than 1 month"
+
       ],
       reservations: [],
       allWorkspaces: [],
@@ -391,7 +394,9 @@ export default {
       this.$axios.get(`api/workspaces`)
         .then(res => {
           this.allWorkspaces = res.data.data
+
         })
+
     },
     openDialog(id) {
       this.dialogReserve = true

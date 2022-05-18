@@ -159,11 +159,11 @@
 
           <v-dialog v-model="dialogDelete" max-width="600px">
             <v-card>
-              <v-card-title primary-title class="justify-center">Are you sure you want to delete this hotel?</v-card-title>
+              <v-card-title primary-title class="justify-center">Are you sure you want to delete this workspace?</v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn class="text-left primary" text @click="closeDelete">Cancel</v-btn>
-                <v-btn class="text-left primary" text @click="deleteItemConfirm">OK</v-btn>
+                <v-btn color="error" text @click="closeDelete">Cancel</v-btn>
+                <v-btn color="success" text @click="deleteItemConfirm">OK</v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
@@ -188,6 +188,65 @@
     </v-data-table>
   </v-card>
   </div>
+
+    <div>
+      <v-snackbar
+        v-model="workspaceEditedSnackbar"
+        color="success"
+      >
+        Workspace has been modified successfully.
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="black"
+            text
+            v-bind="attrs"
+            @click="workspaceEditedSnackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
+    <div>
+      <v-snackbar
+        v-model="workspaceCreatedSnackbar"
+        color="success"
+      >
+        Workspace has been created.
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="black"
+            text
+            v-bind="attrs"
+            @click="workspaceCreatedSnackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
+
+    <div>
+      <v-snackbar
+        v-model="workspaceDeletedSnackbar"
+        color="success"
+      >
+        Workspace has been deleted successfully.
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="black"
+            text
+            v-bind="attrs"
+            @click="workspaceDeletedSnackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
   </v-container>
 </template>
 
@@ -201,6 +260,9 @@ export default {
       search: '',
       dialog: false,
       dialogDelete: false,
+      workspaceDeletedSnackbar: false,
+      workspaceEditedSnackbar: false,
+      workspaceCreatedSnackbar: false,
       editedIndex: -1,
       headers:
         [
@@ -298,6 +360,7 @@ export default {
       .then(response =>{
         this.workspaces.splice(this.editedIndex, 1)
         this.closeDelete()
+        this.workspaceDeletedSnackbar = true
       })
       .catch(error => {
         console.log(error)
@@ -341,6 +404,7 @@ export default {
           .then(response => {
             this.close()
             console.log(response)
+            this.workspaceEditedSnackbar = true
           })
         .catch(error =>{
           console.log(error)
@@ -359,6 +423,7 @@ export default {
           .then(response => {
             this.close()
             console.log(response)
+            this.workspaceCreatedSnackbar = true
           })
           .catch(error =>{
             console.log(error)

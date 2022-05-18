@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f494aef-fded-49f3-bfa9-93a04cf81a5e" name="Changes" comment="Email restrictions added">
+    <list default="true" id="7f494aef-fded-49f3-bfa9-93a04cf81a5e" name="Changes" comment="Modified user status as Free during the event">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/SecondFloor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/SecondFloor.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/my-reservations/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/my-reservations/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/registration/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/registration/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/reservations/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/reservations/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/users/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/users/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/workspaces/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/workspaces/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/plugins/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/plugins/axios.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,7 +286,14 @@
       <workItem from="1652116741331" duration="1839000" />
       <workItem from="1652163698255" duration="13846000" />
       <workItem from="1652249547542" duration="1430000" />
-      <workItem from="1652253908083" duration="1034000" />
+      <workItem from="1652253908083" duration="1645000" />
+      <workItem from="1652255573027" duration="13934000" />
+      <workItem from="1652297120119" duration="596000" />
+      <workItem from="1652336789405" duration="14699000" />
+      <workItem from="1652422393455" duration="9159000" />
+      <workItem from="1652685754697" duration="9000" />
+      <workItem from="1652816908215" duration="3113000" />
+      <workItem from="1652855071175" duration="10537000" />
     </task>
     <task id="LOCAL-00001" summary="Email restrictions added">
       <created>1652253322106</created>
@@ -288,7 +302,28 @@
       <option name="project" value="LOCAL" />
       <updated>1652253322106</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Configuration file">
+      <created>1652255216522</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652255216522</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixed warnings">
+      <created>1652257939894</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652257939894</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Modified user status as Free during the event">
+      <created>1652858004271</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652858004271</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,7 +354,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Email restrictions added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Email restrictions added" />
+    <MESSAGE value="Configuration file" />
+    <MESSAGE value="fixed warnings" />
+    <MESSAGE value="Modified user status as Free during the event" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified user status as Free during the event" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

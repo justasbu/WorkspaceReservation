@@ -445,28 +445,39 @@ export default {
         this.updatedReservation.dateFrom = moment.tz(this.editedReservation.toEditorFrom, 'UTC')
           .format('YYYY-MM-DD HH:mm:ss')
         this.updatedReservation.workspace_id = this.editedReservation.workspace_id
-        Object.assign(this.allReservations[this.editedIndex], this.updatedReservation)
+
+        let minimumTime = moment.tz(now(), 'UTC').format('YYYY-MM-DD HH:mm:ss')
+
         // Check if reservation can be updated
         for (let i = 0; i < this.allReservations.length; i++) {
-          if (this.reservations[i].workspace_id === this.updatedReservation.workspace_id) {
-            if ((moment(this.updatedReservation.dateFrom).isAfter(moment(this.reservations[i].dateFrom))
-                && moment(this.updatedReservation.dateFrom).isBefore(moment(this.reservations[i].dateTo))) ||
-              (moment(this.updatedReservation.dateTo).isAfter(moment(this.reservations[i].dateFrom)) &&
-                moment(this.updatedReservation.dateTo).isBefore(moment(this.reservations[i].dateTo))) ||
-              (moment(this.updatedReservation.dateFrom).isBefore(moment(this.reservations[i].dateFrom)) &&
-                moment(this.updatedReservation.dateTo).isAfter(moment(this.reservations[i].dateTo)))) {
+          if (this.allReservations[i].workspace_id === this.updatedReservation.workspace_id) {
+            if ((moment(this.updatedReservation.dateFrom).isAfter(moment(this.allReservations[i].dateFrom))
+                && moment(this.updatedReservation.dateFrom).isBefore(moment(this.allReservations[i].dateTo))) ||
+              (moment(this.updatedReservation.dateTo).isAfter(moment(this.allReservations[i].dateFrom)) &&
+                moment(this.updatedReservation.dateTo).isBefore(moment(this.allReservations[i].dateTo))) ||
+              (moment(this.updatedReservation.dateFrom).isBefore(moment(this.allReservations[i].dateFrom)) &&
+                moment(this.updatedReservation.dateTo).isAfter(moment(this.allReservations[i].dateTo)))) {
               this.reservationEditFail = true
               break
-            } else {
+            }
+            else if (moment(this.updatedReservation.dateFrom).isBefore(moment(minimumTime)) ||
+              moment(this.updatedReservation.dateTo).isBefore(moment(minimumTime)))
+            {
+              this.dateBeforeCurrentTime = true
+              break
+            }
+            else {
               this.$axios.patch(`/api/reservations/${this.editedReservation.id}`, this.updatedReservation)
                 .then(response => {
                   this.close()
                   console.log(response)
+                  this.reservationEditSuccess = true
+                  Object.assign(this.allReservations[this.editedIndex], this.updatedReservation)
                 })
                 .catch(error => {
                   console.log(error)
                 })
-              this.reservationEditSuccess = true
+
             }
           }
         }

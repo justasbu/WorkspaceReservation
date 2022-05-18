@@ -133,13 +133,13 @@
                   </v-card-actions>
                 </v-card>
               </v-dialog>
-              <v-dialog v-model="dialogDelete" max-width="500px">
+              <v-dialog v-model="dialogDelete" max-width="600px">
                 <v-card>
                   <v-card-title class="text-h5">Are you sure you want to delete this reservation?</v-card-title>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                    <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                    <v-btn color="error" text @click="closeDelete">Cancel</v-btn>
+                    <v-btn color="success" text @click="deleteItemConfirm">OK</v-btn>
                     <v-spacer></v-spacer>
                   </v-card-actions>
                 </v-card>
@@ -209,6 +209,46 @@
         </template>
       </v-snackbar>
     </div>
+
+    <div>
+      <v-snackbar
+        v-model="reservationDeleted"
+        color="success"
+      >
+        Reservation has been deleted successfully.
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="black"
+            text
+            v-bind="attrs"
+            @click="reservationDeleted = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
+
+    <div>
+      <v-snackbar
+        v-model="dateBeforeCurrentTime"
+        color="error"
+      >
+        Reservation date can not be before current date!
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="black"
+            text
+            v-bind="attrs"
+            @click="dateBeforeCurrentTime = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
   </v-container>
 </template>
 
@@ -225,7 +265,9 @@ export default {
       dialogDelete: false,
       editedIndex: -1,
       reservationEditFail: false,
+      reservationDeleted: false,
       reservationEditSuccess: false,
+      dateBeforeCurrentTime: false,
       headers:
         [
 
@@ -373,6 +415,7 @@ export default {
         .then(response => {
           this.reservations.splice(this.editedIndex, 1)
           this.closeDelete()
+          this.reservationDeleted = true
         })
         .catch(error => {
           console.log(error)
@@ -406,7 +449,9 @@ export default {
         this.updatedReservation.dateFrom = moment.tz(this.editedReservation.toEditorFrom, 'UTC')
           .format('YYYY-MM-DD HH:mm:ss')
         this.updatedReservation.workspace_id = this.editedReservation.workspace_id
-        Object.assign(this.reservations[this.editedIndex], this.updatedReservation)
+
+        let minimumTime = moment.tz(now(), 'UTC').format('YYYY-MM-DD HH:mm:ss')
+
         for (let i = 0; i < this.reservations.length; i++) {
           if (this.reservations[i].workspace_id === this.updatedReservation.workspace_id) {
             if ((moment(this.updatedReservation.dateFrom).isAfter(moment(this.reservations[i].dateFrom))
@@ -414,19 +459,30 @@ export default {
               (moment(this.updatedReservation.dateTo).isAfter(moment(this.reservations[i].dateFrom)) &&
                 moment(this.updatedReservation.dateTo).isBefore(moment(this.reservations[i].dateTo))) ||
               (moment(this.updatedReservation.dateFrom).isBefore(moment(this.reservations[i].dateFrom)) &&
-                moment(this.updatedReservation.dateTo).isAfter(moment(this.reservations[i].dateTo)))) {
+                moment(this.updatedReservation.dateTo).isAfter(moment(this.reservations[i].dateTo))))
+            {
               this.reservationEditFail = true
               break
-            } else {
+            }
+            else if (moment(this.updatedReservation.dateFrom).isBefore(moment(minimumTime)) ||
+              moment(this.updatedReservation.dateTo).isBefore(moment(minimumTime)))
+            {
+                  this.dateBeforeCurrentTime = true
+                  break
+            }
+            else {
               this.$axios.patch(`/api/reservations/${this.editedReservation.id}`, this.updatedReservation)
                 .then(response => {
+
                   this.close()
                   console.log(response)
+                  this.reservationEditSuccess = true
+                  Object.assign(this.reservations[this.editedIndex], this.updatedReservation)
                 })
                 .catch(error => {
                   console.log(error)
                 })
-              this.reservationEditSuccess = true
+
             }
           }
         }

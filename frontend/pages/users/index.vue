@@ -121,8 +121,8 @@
                   <v-card-title class="text-h5">Are you sure you want to delete this user?</v-card-title>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                    <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                    <v-btn color="error" text @click="closeDelete">Cancel</v-btn>
+                    <v-btn color="success" text @click="deleteItemConfirm">OK</v-btn>
                     <v-spacer></v-spacer>
                   </v-card-actions>
                 </v-card>
@@ -150,6 +150,47 @@
         </v-data-table>
       </v-card>
     </div>
+
+    <div>
+      <v-snackbar
+        v-model="userEditedSnackbar"
+        color="success"
+      >
+        User has been modified successfully.
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="black"
+            text
+            v-bind="attrs"
+            @click="userEditedSnackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
+
+    <div>
+      <v-snackbar
+        v-model="userDeletedSnackbar"
+        color="success"
+      >
+        User has been deleted successfully.
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="black"
+            text
+            v-bind="attrs"
+            @click="userDeletedSnackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
+
   </v-container>
 </template>
 
@@ -163,6 +204,8 @@ export default {
       search: '',
       dialog: false,
       dialogDelete: false,
+      userEditedSnackbar: false,
+      userDeletedSnackbar: false,
       editedIndex: -1,
       headers:
         [
@@ -245,6 +288,7 @@ export default {
 
           this.users.splice(this.editedIndex, 1)
           this.closeDelete()
+          this.userDeletedSnackbar = true
         })
         .catch(error => {
           console.log(error)
@@ -280,6 +324,7 @@ export default {
         this.$axios.patch(`/api/users/${this.editedUser.id}`, this.updatedUser)
           .then(response => {
             this.close()
+            this.userEditedSnackbar = true
             console.log(response)
           })
           .catch(error => {
