@@ -59,6 +59,7 @@
 
               <v-card-text>
                 <v-container>
+                  <v-form v-model="isFormValid">
                     <v-row>
                       <v-col
                         cols="12"
@@ -133,6 +134,7 @@
                         ></v-select>
                       </v-col>
                     </v-row>
+                  </v-form>
                 </v-container>
               </v-card-text>
 
@@ -148,6 +150,7 @@
                 <v-btn
                   class="text-left primary"
                   text
+                  :disabled="!isFormValid"
                   @click="save"
 
                 >
@@ -263,6 +266,7 @@ export default {
       workspaceDeletedSnackbar: false,
       workspaceEditedSnackbar: false,
       workspaceCreatedSnackbar: false,
+      isFormValid: false,
       editedIndex: -1,
       headers:
         [

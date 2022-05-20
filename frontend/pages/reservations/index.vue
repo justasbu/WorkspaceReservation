@@ -57,6 +57,7 @@
 
                   <v-card-text>
                     <v-container>
+                      <v-form v-model="isFormValid">
                       <v-row>
                         <v-col
                           cols="12"
@@ -111,6 +112,7 @@
                         </v-col>
 
                       </v-row>
+                      </v-form>
                     </v-container>
                   </v-card-text>
 
@@ -126,6 +128,7 @@
                     <v-btn
                       class="text-left primary"
                       text
+                      :disabled="!isFormValid"
                       @click="save"
                     >
                       Save
@@ -258,12 +261,13 @@ import moment, {now} from 'moment-timezone'
 export default {
   // page properties go here
 
-  data: () => {
+  data: function ()  {
     return {
       search: '',
       dialog: false,
       dialogDelete: false,
       editedIndex: -1,
+      isFormValid: false,
       reservationEditFail: false,
       reservationDeleted: false,
       reservationEditSuccess: false,
@@ -310,16 +314,18 @@ export default {
         dateTo: '',
         workspace_id: '',
       },
-      // minimumTime: moment.tz(now(), 'UTC').format('YYYY-MM-DD HH:mm:ss') ,
+      minimumTime: moment.tz(now(), 'UTC').format('YYYY-MM-DD HH:mm:ss') ,
       dateFromRules: [
 
         v => !!v || "Required",
-        //  v => v > this.minimumTime || "Date must be greater than Current time",
       ],
       dateToRules: [
         v => !!v || "Required",
-        //  v => this.dateFrom < v || "Date To must be greater than Date From",
-        //    v => v > this.minimumTime || "Date must be greater than Current time",
+        v => this.editedReservation.toEditorFrom < v || "Date To must be greater than Date From",
+        v => v > this.minimumTime || "Date must be greater than Current time",
+        v => moment(new Date(this.editedReservation.toEditorTo)).diff(moment(new Date
+          (this.editedReservation.toEditorFrom)), 'months', true) < 1 ||
+          "Reservation can not be longer than 1 month"
       ],
     }
   },

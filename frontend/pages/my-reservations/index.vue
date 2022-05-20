@@ -56,6 +56,7 @@
 
                 <v-card-text>
                   <v-container>
+                    <v-form v-model="isFormValid">
                     <v-row>
                       <v-col
                         cols="12"
@@ -110,6 +111,7 @@
                       </v-col>
 
                     </v-row>
+                    </v-form>
                   </v-container>
                 </v-card-text>
 
@@ -125,6 +127,7 @@
                   <v-btn
                     class="text-left primary"
                     text
+                    :disabled="!isFormValid"
                     @click="save"
                   >
                     Save
@@ -132,13 +135,13 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-            <v-dialog v-model="dialogDelete" max-width="500px">
+            <v-dialog v-model="dialogDelete" max-width="600px">
               <v-card>
                 <v-card-title class="text-h5">Are you sure you want to delete this reservation?</v-card-title>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                  <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                  <v-btn color="error" text @click="closeDelete">Cancel</v-btn>
+                  <v-btn color="success" text @click="deleteItemConfirm">OK</v-btn>
                   <v-spacer></v-spacer>
                 </v-card-actions>
               </v-card>
@@ -210,18 +213,19 @@
 </template>
 
 <script>
-import moment, {now} from 'moment-timezone'
+import moment, {now} from "moment-timezone"
 
 export default {
   // page properties go here
 
-  data: () => {
+  data: function ()  {
     return {
       search: '',
       dialog: false,
       dialogDelete: false,
       reservationEditFail: false,
       reservationEditSuccess: false,
+      isFormValid: false,
       editedIndex: -1,
       headers:
         [
@@ -265,15 +269,21 @@ export default {
         dateTo: '',
         workspace_id: '',
       },
+
+      minimumTime: moment.tz(now(), 'UTC').format('YYYY-MM-DD HH:mm:ss'),
+
       dateFromRules: [
 
         v => !!v || "Required",
-        //  v => v > this.minimumTime || "Date must be greater than Current time",
       ],
+
       dateToRules: [
         v => !!v || "Required",
-        //  v => this.dateFrom < v || "Date To must be greater than Date From",
-        //    v => v > this.minimumTime || "Date must be greater than Current time",
+        v => this.editedReservation.toEditorFrom < v || "Date To must be greater than Date From",
+        v => v > this.minimumTime || "Date must be greater than Current time",
+        v => moment(new Date(this.editedReservation.toEditorTo)).diff(moment(new Date
+          (this.editedReservation.toEditorFrom)), 'months', true) < 1 ||
+          "Reservation can not be longer than 1 month"
       ],
     }
   },

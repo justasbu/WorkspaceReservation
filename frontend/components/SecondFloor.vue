@@ -37,19 +37,17 @@
         </v-col>
 
         <v-col>
-          <v-card class="float-xl-left" shaped max-width="400">
-            <v-card-title>Agenda</v-card-title>
+          <v-card class="float-xl-center" shaped max-width="400">
+            <v-card-title class="justify-center">Agenda</v-card-title>
             <v-row>
               <v-col>
-                <v-sheet height="30" width="70" color="rgba(0, 255, 0, 0.5)" rounded>Available</v-sheet>
+               <v-chip color="rgba(0, 255, 0, 0.5)">Available</v-chip>
+              </v-col>
+              <v-col class="ml-6">
+                <v-chip color="#FB5D5D" opacity="0.3">Reserved</v-chip>
               </v-col>
               <v-col>
-
-                <v-sheet height="30" width="70" color="#FB5D5D" opacity="0.3" rounded>Reserved</v-sheet>
-              </v-col>
-              <v-col>
-
-                <v-sheet height="30" width="90" color="grey" opacity="0.3" rounded>Unavailable</v-sheet>
+                <v-chip color="grey" opacity="0.3">Unavailable</v-chip>
               </v-col>
             </v-row>
           </v-card>
@@ -352,6 +350,7 @@ export default {
 
         v => !!v || "Required",
         v => v > this.minimumTime || "Date must be greater than Current time",
+       // v => v < this.dateTo || "Date From can not be earlier than Date To date"
       ],
       dateToRules: [
         v => !!v || "Required",

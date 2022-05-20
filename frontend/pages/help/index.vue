@@ -22,7 +22,8 @@
                   </v-col>
                   <v-spacer></v-spacer>
                   <v-col class="d-flex ml-auto" cols="12" sm="3" xsm="12" >
-                    <v-btn  block  color="primary" @click="validateHelpForm"> Send  </v-btn>
+                    <v-btn  block  color="primary" :disabled="!helpModel"
+                            @click="validateHelpForm"> Send  </v-btn>
                   </v-col>
                 </v-row>
               </v-form>
@@ -67,7 +68,7 @@ export default {
 
     ],
     frontHelpForm: true,
-    helpModel: true,
+    helpModel: false,
     helpDialog: true,
 
     helpForm: {
