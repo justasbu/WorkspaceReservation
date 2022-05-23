@@ -11,15 +11,15 @@
       <v-row>
         <v-col>
           <v-form ref="wsFilterForm" v-model="filterForm">
-            <v-text-field cols="12" Label="Date From" v-model="dateFrom" :rules="dateFromRules"
-                          min="2022-05-02T00:00"
-                          max="2030-05-02T00:00"
+            <v-text-field id="dateF" cols="12" Label="Date From" v-model="dateFrom" :rules="dateFromRules"
+
+                          max="2029-12-31T00:00"
                           type="datetime-local"></v-text-field>
             <v-text-field
+              id="dateT"
               cols="12"
               Label="Date To" v-model="dateTo" :rules="dateToRules"
-              min="2022-05-02T00:00"
-              max="2030-05-02T00:00"
+              max="2029-12-31T00:00"
               type="datetime-local"
 
             ></v-text-field>
@@ -365,7 +365,8 @@ export default {
       workspaceCheck: [],
       moment: moment,
       filterForm: true,
-      last30DaysReservations: 0
+      last30DaysReservations: 0,
+
     }
 
   },
@@ -373,7 +374,10 @@ export default {
   mounted() {
 
     this.getWorkspaces()
-
+    document.getElementById("dateF").setAttribute('min',moment(this.minimumTime)
+      .format('YYYY-MM-DDTHH:mm'))
+    document.getElementById("dateT").setAttribute('min',moment(this.minimumTime)
+      .format('YYYY-MM-DDTHH:mm'))
   },
   watch: {
     dialogReserve(val) {
@@ -467,6 +471,8 @@ export default {
 
     filter() {
       let result = ''
+      console.log(this.dateFrom)
+      console.log(this.dateTo)
       for (let i = 0; i < this.allWorkspaces.length; i++) {
         result = 'green'
         for (let j = 0; j < this.allWorkspaces[i].reservations.length; j++) {
