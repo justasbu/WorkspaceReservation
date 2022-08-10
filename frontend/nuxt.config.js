@@ -73,15 +73,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    ['nuxt-mail', {
-      message: {
-        to: 'justas.bucionis@gmail.com',
-      },
-      smtp: {
-        host: "smtp.mailtrap.io",
-        port: 2525,
-      },
-    }],
+
   ],
 
   moment: {

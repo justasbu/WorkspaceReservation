@@ -317,6 +317,26 @@
         </template>
       </v-snackbar>
     </div>
+    <div class="text-center ma-2">
+
+      <v-snackbar
+        v-model="workspaceUnavailable"
+        color="error"
+      >
+        Selected workspace is currently unavailable. Please select another one.
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="black"
+            text
+            v-bind="attrs"
+            @click="workspaceUnavailable = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
 
   </v-container>
 </template>
@@ -330,6 +350,7 @@ export default {
       reservationSuccess: false,
       dialogReserve: false,
       alreadyReservedSnackbar: false,
+      workspaceUnavailable: false,
       emptyFormSnackbar: false,
       workspaces: {
         id: '',
@@ -339,6 +360,7 @@ export default {
         dockingStation: '',
         headPhones: '',
         tableType: '',
+        status: '',
         reservations: []
       },
       dateFrom: '',
@@ -397,7 +419,7 @@ export default {
       this.$axios.get(`api/workspaces`)
         .then(res => {
           this.allWorkspaces = res.data.data
-
+          console.log(res.data.data)
         })
 
     },
@@ -429,7 +451,8 @@ export default {
               }, 5000);
 
             })
-        } else this.alreadyReservedSnackbar = true
+        } else if (this.getColor(this.workspaces.id) === '#FF0000') this.alreadyReservedSnackbar = true
+        else if (this.getColor(this.workspaces.id) === '#b6b6ba') this.workspaceUnavailable = true
       } else {
         this.emptyFormSnackbar = true
       }
@@ -443,10 +466,14 @@ export default {
     getColor(id) {
       const activeColor = '#008000';
       const inactiveColor = '#FF0000'
+      const unavailableColor = '#b6b6ba'
       if (this.workspaceCheck.length > 0) {
-        if (this.workspaceCheck[id - 1].status === 'green') {
+
+        if (this.workspaceCheck[id - 1].status === 'green' && this.allWorkspaces[id - 1].status === 'Available') {
           return activeColor
-        } else return inactiveColor
+        }
+        else if( this.allWorkspaces[id - 1].status === 'Unavailable') return unavailableColor
+        else return inactiveColor
 
       }
 

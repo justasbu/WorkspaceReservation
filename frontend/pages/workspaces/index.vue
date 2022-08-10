@@ -126,10 +126,24 @@
                         sm="6"
                         md="4"
                       >
+
                         <v-select
                           v-model="editedWorkspace.tableType"
                           label="Table Type"
                           :items="liftableOrNot"
+                          :rules="requiredRule"
+                        ></v-select>
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                      >
+
+                        <v-select
+                          v-model="editedWorkspace.status"
+                          label="Status"
+                          :items="availability"
                           :rules="requiredRule"
                         ></v-select>
                       </v-col>
@@ -270,12 +284,13 @@ export default {
       editedIndex: -1,
       headers:
         [
-          {text: 'Table Name', value: 'tableNumber', sortable: false, align: 'left'},
-          {text: 'Monitors Count', value: 'monitorsCount', sortable: false, align: 'center'},
-          {text: 'Mounted / Seperated Monitors', value: 'mount', sortable: false, align: 'center'},
-          {text: 'Docking Station / PC', value: 'dockingStation', align: 'center', sortable: false},
-          {text: 'Headphones', value: 'headPhones', align: 'center', sortable: false},
-          {text: 'Table Type', value: 'tableType', align: 'center', width: '250px', sortable: false},
+          {text: 'Table Name', value: 'tableNumber', align: 'left'},
+          {text: 'Monitors Count', value: 'monitorsCount', align: 'center'},
+          {text: 'Mounted / Seperated Monitors', value: 'mount', align: 'center'},
+          {text: 'Docking Station / PC', value: 'dockingStation', align: 'center'},
+          {text: 'Headphones', value: 'headPhones', align: 'center'},
+          {text: 'Table Type', value: 'tableType', align: 'center'},
+          {text: 'Status', value: 'status', align: 'center'},
           {text: 'Actions', value: 'actions', align: 'center', sortable: false},
         ],
       requiredRule: [value => !!value || 'Please fill this field.'],
@@ -283,6 +298,7 @@ export default {
       workspace:null,
       mountedOrSeperated:['Monitors on Mount', 'Seperated Monitors'],
       liftableOrNot: ['Non-Liftable', 'Liftable'],
+      availability: ['Available', 'Unavailable'],
       dockingOrPC:['Docking Station', 'PC'],
       monitors: [1,2,3,4],
       valid: true,
@@ -294,6 +310,7 @@ export default {
         mount: '',
         dockingStation: '',
         headPhones: '',
+        status: '',
         tableType: '',
         zone_id: 1
       },
@@ -304,6 +321,7 @@ export default {
         mount: '',
         dockingStation: '',
         headPhones: '',
+        status: '',
         tableType: '',
         zone_id: 1
       },
@@ -313,6 +331,7 @@ export default {
         monitorsCount: '',
         mount: '',
         dockingStation: '',
+        status: '',
         headPhones: '',
         tableType: '',
         zone_id: 1
@@ -399,6 +418,7 @@ export default {
         this.updatedWorkspace.monitorsCount = this.editedWorkspace.monitorsCount
         this.updatedWorkspace.mount = this.editedWorkspace.mount
         this.updatedWorkspace.dockingStation = this.editedWorkspace.dockingStation
+        this.updatedWorkspace.status = this.editedWorkspace.status
         this.updatedWorkspace.headPhones = this.editedWorkspace.headPhones
         this.updatedWorkspace.tableType = this.editedWorkspace.tableType
 
@@ -420,6 +440,7 @@ export default {
         this.newWorkspace.mount = this.editedWorkspace.mount
         this.newWorkspace.dockingStation = this.editedWorkspace.dockingStation
         this.newWorkspace.headPhones = this.editedWorkspace.headPhones
+        this.newWorkspace.status = this.editedWorkspace.status
         this.newWorkspace.tableType = this.editedWorkspace.tableType
 
         console.log(this.newWorkspace)

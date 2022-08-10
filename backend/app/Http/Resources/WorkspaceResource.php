@@ -24,6 +24,7 @@ class WorkspaceResource extends JsonResource
             'mount' => $this->mount,
             'dockingStation' => $this->dockingStation,
             'headPhones' => $this->headPhones,
+            'status' => $this->status,
             'tableType' => $this->tableType,
             'zone_id' => $this->zone_id,
             'reservations' => ReservationResource::collection($this->reservations)

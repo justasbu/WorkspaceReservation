@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*','/*','api/*'],
 
-    'allowed_origins' => ['*','api/*'],
+    'allowed_origins' => ['*'],
      'allowed_hosts' => ['*'],
 
     'allowed_origins_patterns' => ['*'],

@@ -13,7 +13,7 @@ class Workspace extends Model
 
     protected $fillable = [
         'tableNumber', 'monitorsCount', 'mount', 'dockingStation',
-        'headPhones', 'tableType', 'zone_id'
+        'headPhones', 'status','tableType', 'zone_id'
 
     ];
 
