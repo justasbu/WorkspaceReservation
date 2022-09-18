@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -41,8 +42,8 @@ class AuthController extends Controller
     {
         $validator = Validator::make(
             $request->all(), [
-            'email' => 'required|email|regex:/(.*)@uc\.group/i|',
-            'password' => 'required|string|min:6',
+                'email' => 'required|email|regex:/(.*)@uc\.group/i|',
+                'password' => 'required|string|min:6',
             ]
         );
         if ($validator->fails()) {
@@ -68,10 +69,10 @@ class AuthController extends Controller
     {
         $validator = Validator::make(
             $request->all(), [
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|regex:/(.*)@uc\.group/i|unique:users',
-            'role' => 'required|string',
-            'password' => 'required|string|confirmed|min:8',
+                'name' => 'required|string|between:2,100',
+                'email' => 'required|string|email|max:100|regex:/(.*)@uc\.group/i|unique:users',
+                'role' => 'required|string',
+                'password' => 'required|string|confirmed|min:8',
             ]
         );
         if ($validator->fails()) {
@@ -85,8 +86,8 @@ class AuthController extends Controller
         );
         return response()->json(
             [
-            'message' => 'User successfully registered',
-            'user' => $user
+                'message' => 'User successfully registered',
+                'user' => $user
             ], 201
         );
     }
@@ -117,7 +118,9 @@ class AuthController extends Controller
      */
     public function userProfile(Request $request)
     {
+
         return new \App\Http\Resources\UserResource($request->user());
+
     }
 
     /**
@@ -131,10 +134,10 @@ class AuthController extends Controller
     {
         return response()->json(
             [
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => auth()->factory()->getTTL() * 60,
+                'user' => auth()->user()
             ]
         );
     }
@@ -143,7 +146,7 @@ class AuthController extends Controller
     {
         $request->validate(
             [
-            'email' => 'required|email'
+                'email' => 'required|email'
             ]
         );
         $userData = \App\Models\User::where('email', $request->email)->first();
@@ -151,9 +154,9 @@ class AuthController extends Controller
         //Create Password Reset Token
         DB::table('password_resets')->insert(
             [
-            'email' => $request->email,
-            'token' => Str::random(60),
-            'created_at' => Carbon::now()
+                'email' => $request->email,
+                'token' => Str::random(60),
+                'created_at' => Carbon::now()
             ]
         );
         //Get the token just created above
@@ -171,9 +174,9 @@ class AuthController extends Controller
     {
         $request->validate(
             [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
+                'token' => 'required',
+                'email' => 'required|email',
+                'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
             ]
         );
 
@@ -182,8 +185,8 @@ class AuthController extends Controller
             function ($user) use ($request) {
                 $user->forceFill(
                     [
-                    'password' => Hash::make($request->password),
-                    'remember_token' => Str::random(60),
+                        'password' => Hash::make($request->password),
+                        'remember_token' => Str::random(60),
                     ]
                 )->save();
 
@@ -195,14 +198,14 @@ class AuthController extends Controller
         if ($status == Password::PASSWORD_RESET) {
             return response(
                 [
-                'message' => 'Password reset successfully'
+                    'message' => 'Password reset successfully'
                 ]
             );
         }
 
         return response(
             [
-            'message' => __($status)
+                'message' => __($status)
             ], 500
         );
 

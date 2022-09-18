@@ -27,6 +27,7 @@ class WorkspaceResource extends JsonResource
             'status' => $this->status,
             'tableType' => $this->tableType,
             'zone_id' => $this->zone_id,
+            'monitors' => MonitorResource::collection($this->monitors),
             'reservations' => ReservationResource::collection($this->reservations)
         ];
     }

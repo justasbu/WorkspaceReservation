@@ -8,12 +8,26 @@
             <v-icon large>{{ i.icon }}</v-icon>
             <div class="caption py-1">{{ i.name }}</div>
           </v-tab>
+
           <v-tab-item>
             <v-card class="px-4">
               <v-card-text>
                 <v-form ref="frontLoginForm" v-model="valid" lazy-validation>
+                  <v-row
+                    class="pa-4"
+                    align="center"
+                    justify="center"
+                  >
+                    <azure-login-component/>
+                  </v-row>
+
+                  <v-divider></v-divider>
+                  <v-col cols="12" class="text-center"> OR</v-col>
                   <v-row>
+
+
                     <v-col cols="12">
+
                       <v-text-field v-model="loginForm.email" :rules="loginEmailRules"
                                     prepend-icon="mdi-account-circle  "
                                     label="E-mail" required></v-text-field>
@@ -31,6 +45,7 @@
                     </v-col>
                     <v-col cols="12"> Don't have an account yet?
                       <a href="/registration" class="text-decoration-none"> Create it here!</a>
+
                     </v-col>
 
 
@@ -39,9 +54,10 @@
                       <v-btn x-large block :disabled="!valid" color="success" @click="validateLogin"> Login</v-btn>
                     </v-col>
                   </v-row>
+
                 </v-form>
               </v-card-text>
-            </v-card>
+               </v-card>
           </v-tab-item>
         </v-tabs>
       </div>
@@ -74,8 +90,11 @@
 
 
 <script>
+import AzureLoginComponent from "~/components/AzureLoginComponent"
 
 export default {
+  components: AzureLoginComponent,
+
   data: () => ({
     wrongCredentials: false,
     layout: 'empty',
@@ -117,7 +136,6 @@ export default {
 
     async validateLogin() {
       if (this.$refs.frontLoginForm.validate()) {
-        console.log(this.loginForm)
         try {
           await this.$auth.loginWith('local', {
             data: this.loginForm

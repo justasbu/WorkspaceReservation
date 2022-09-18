@@ -2,13 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f494aef-fded-49f3-bfa9-93a04cf81a5e" name="Changes" comment="Modified user status as Free during the event">
+      <change afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/LoginController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/MeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/SocialLoginController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Http/Middleware/CORS.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Http/Middleware/SocialMiddleware.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Http/Resources/MonitorResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Models/UserSocial.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Services/MonitorService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/config/saml2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/database/migrations/2022_08_09_131851_add_status_to_workspace_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/database/migrations/2022_08_16_132445_create_user_socials_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/database/migrations/2022_08_19_092640_add_token_to_users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/resources/views/oauth/callback.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/images/ms_login.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/AzureLoginComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/monitors/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/social-callback.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/Kaunas 2nd floor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/store/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Resources/WorkspaceResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Resources/WorkspaceResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Models/Workspace.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Workspace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/SecondFloor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/SecondFloor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/my-reservations/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/my-reservations/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/registration/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/registration/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/reservations/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/reservations/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/users/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/users/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/workspaces/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/workspaces/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nuxt.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/help/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/help/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/login/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/plugins/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/plugins/axios.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +51,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -184,24 +212,32 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Downloads/Statistic-4.1.10 (1).jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/static" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2021.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
     <property name="vuejs.nuxt.types-notification-shown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\UC-0583\WorkspaceReservation\frontend\static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\UC-0583\WorkspaceReservation\backend\resources\views\oauth" />
+      <recent name="C:\Users\UC-0583\WorkspaceReservation\frontend\assets\images" />
       <recent name="C:\Users\UC-0583\WorkspaceReservation" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\UC-0583\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7f494aef-fded-49f3-bfa9-93a04cf81a5e" name="Changes" comment="" />
@@ -294,6 +330,13 @@
       <workItem from="1652685754697" duration="9000" />
       <workItem from="1652816908215" duration="3113000" />
       <workItem from="1652855071175" duration="10537000" />
+      <workItem from="1661152805324" duration="12448000" />
+      <workItem from="1661242650061" duration="9607000" />
+      <workItem from="1661321708946" duration="3110000" />
+      <workItem from="1661412967270" duration="11762000" />
+      <workItem from="1661495863543" duration="17527000" />
+      <workItem from="1661755442597" duration="3033000" />
+      <workItem from="1661849605680" duration="3715000" />
     </task>
     <task id="LOCAL-00001" summary="Email restrictions added">
       <created>1652253322106</created>

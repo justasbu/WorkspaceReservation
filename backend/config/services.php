@@ -36,6 +36,6 @@ return [
         'redirect' => env('AZURE_REDIRECT_URI'),
         'tenant' => env('AZURE_TENANT_ID'),
         'proxy' => env('PROXY')  // optionally
-    ],
+    ]
 
 ];

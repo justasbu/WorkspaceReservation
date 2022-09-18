@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-
+//--------MICROSOFT------------------------------------------
+Route::group(['prefix' => '/auth', ['middleware' => 'throttle:20,5']], function() {
+    Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
+    Route::get('/login/{service}',  [\App\Http\Controllers\SocialLoginController::class, 'redirect']);
+    Route::get('/login/{service}/callback', [\App\Http\Controllers\SocialLoginController::class, 'callback']);
+});
+//------------------------------------------------------------
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -27,13 +32,6 @@ Route::group([
 
 
 });
-
-//Route::post('/forgot-password/', 'AuthController@forgotPassword');
-//Route::post('/reset-password/', 'AuthController@reset');
-////Route::get('/callback', 'AuthController@callback');
-//Route::get('/calendar/new', 'CalendarController@getNewEventForm');
-//Route::post('/calendar/new', 'CalendarController@createNewEvent');
-//Route::get('/calendar', 'CalendarController@calendar');
 
 Route::name('Admin')
     ->prefix('users')
@@ -73,13 +71,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     );
 
     Route::group(
-        ['prefix' => 'workspaces'],
-        function () {
-            Route::get('/{workspace}', 'WorkspaceController@show');
-
-        }
-    );
-    Route::group(
         ['prefix' => 'reservations'],
         function () {
             Route::get('/', 'ReservationController@index');
@@ -87,6 +78,18 @@ Route::group(['middleware' => 'auth:api'], function () {
             Route::post('/', 'ReservationController@store');
             Route::patch('/{reservation}', 'ReservationController@update');
             Route::delete('/{reservation}', 'ReservationController@destroy');
+        }
+
+    );
+
+    Route::group(
+        ['prefix' => 'monitors'],
+        function () {
+            Route::get('/', 'MonitorController@index');
+            Route::get('/{monitor}', 'MonitorController@show');
+            Route::post('/', 'MonitorController@store');
+            Route::patch('/{monitor}', 'MonitorController@update');
+            Route::delete('/{monitor}', 'MonitorController@destroy');
         }
 
     );

@@ -22,7 +22,9 @@
                   </v-col>
                   <v-spacer></v-spacer>
                   <v-col class="d-flex ml-auto" cols="12" sm="3" xsm="12" >
-                    <v-btn  block  color="primary" :disabled="!helpModel"
+                    <v-btn  block  color="primary"
+
+                            :disabled="!helpModel"
                             @click="validateHelpForm"> Send  </v-btn>
                   </v-col>
                 </v-row>

@@ -192,7 +192,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-
+    'client_url' => env('CLIENT_BASE_URL'),
     'aliases' => Facade::defaultAliases()->merge([
         // ...
         'JWTAuth' => \Tymon\JWTAuth\Facades\JWTAuth::class,

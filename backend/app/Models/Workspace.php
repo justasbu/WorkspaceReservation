@@ -28,5 +28,10 @@ class Workspace extends Model
     {
         return $this->hasMany(Reservation::class);
     }
+    //Workspace have many monitors
+    public function monitors()
+    {
+        return $this->hasMany(Monitor::class);
+    }
 
 }
